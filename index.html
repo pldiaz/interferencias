@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/filter.css">
+<link rel="stylesheet" href="css/nouislider.min.css">
+        <style>
+        #map {
+            width: 1609px;
+            height: 866px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/tailDT.js"></script>
+<script src="js/nouislider.min.js"></script>
+<script src="js/wNumb.js"></script>
+        <script src="data/RV4_1.js"></script>
+        <script src="data/ETELI1232_2.js"></script>
+        <script src="data/ETELI1234_3.js"></script>
+        <script src="data/ETELI1235_4.js"></script>
+        <script src="data/ETELI1236_5.js"></script>
+        <script src="data/ETELI1237_6.js"></script>
+        <script src="data/ETELI1240_7.js"></script>
+        <script src="data/ETELI1241_8.js"></script>
+        <script src="data/ETELI1244_9.js"></script>
+        <script src="data/ETELI1245_10.js"></script>
+        <script src="data/ETELI1249_11.js"></script>
+        <script src="data/ETELI1250_12.js"></script>
+        <script src="data/ETELI1256_13.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-9.463779660654813,-79.34743321233644],[-8.429143491858653,-77.42973901270483]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_GoogleSatellite_0');
+        map.getPane('pane_GoogleSatellite_0').style.zIndex = 400;
+        var layer_GoogleSatellite_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleSatellite_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_GoogleSatellite_0;
+        map.addLayer(layer_GoogleSatellite_0);
+        function pop_RV4_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FID_'] !== null ? autolinker.link(feature.properties['FID_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Entity'] !== null ? autolinker.link(feature.properties['Entity'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Layer'] !== null ? autolinker.link(feature.properties['Layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Color'] !== null ? autolinker.link(feature.properties['Color'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Linetype'] !== null ? autolinker.link(feature.properties['Linetype'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Elevation'] !== null ? autolinker.link(feature.properties['Elevation'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LineWt'] !== null ? autolinker.link(feature.properties['LineWt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['RefName'] !== null ? autolinker.link(feature.properties['RefName'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_RV4_1_0() {
+            return {
+                pane: 'pane_RV4_1',
+                opacity: 1,
+                color: 'rgba(216,50,199,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_RV4_1');
+        map.getPane('pane_RV4_1').style.zIndex = 401;
+        map.getPane('pane_RV4_1').style['mix-blend-mode'] = 'normal';
+        var layer_RV4_1 = new L.geoJson(json_RV4_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_RV4_1',
+            layerName: 'layer_RV4_1',
+            pane: 'pane_RV4_1',
+            onEachFeature: pop_RV4_1,
+            style: style_RV4_1_0,
+        });
+        bounds_group.addLayer(layer_RV4_1);
+        map.addLayer(layer_RV4_1);
+        function pop_ETELI1232_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COD'] !== null ? autolinker.link(feature.properties['COD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ETELI1232_2_0() {
+            return {
+                pane: 'pane_ETELI1232_2',
+                opacity: 1,
+                color: 'rgba(152,125,183,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ETELI1232_2');
+        map.getPane('pane_ETELI1232_2').style.zIndex = 402;
+        map.getPane('pane_ETELI1232_2').style['mix-blend-mode'] = 'normal';
+        var layer_ETELI1232_2 = new L.geoJson(json_ETELI1232_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ETELI1232_2',
+            layerName: 'layer_ETELI1232_2',
+            pane: 'pane_ETELI1232_2',
+            onEachFeature: pop_ETELI1232_2,
+            style: style_ETELI1232_2_0,
+        });
+        bounds_group.addLayer(layer_ETELI1232_2);
+        map.addLayer(layer_ETELI1232_2);
+        function pop_ETELI1234_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COD'] !== null ? autolinker.link(feature.properties['COD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ETELI1234_3_0() {
+            return {
+                pane: 'pane_ETELI1234_3',
+                opacity: 1,
+                color: 'rgba(213,180,60,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ETELI1234_3');
+        map.getPane('pane_ETELI1234_3').style.zIndex = 403;
+        map.getPane('pane_ETELI1234_3').style['mix-blend-mode'] = 'normal';
+        var layer_ETELI1234_3 = new L.geoJson(json_ETELI1234_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ETELI1234_3',
+            layerName: 'layer_ETELI1234_3',
+            pane: 'pane_ETELI1234_3',
+            onEachFeature: pop_ETELI1234_3,
+            style: style_ETELI1234_3_0,
+        });
+        bounds_group.addLayer(layer_ETELI1234_3);
+        map.addLayer(layer_ETELI1234_3);
+        function pop_ETELI1235_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COD'] !== null ? autolinker.link(feature.properties['COD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ETELI1235_4_0() {
+            return {
+                pane: 'pane_ETELI1235_4',
+                opacity: 1,
+                color: 'rgba(213,180,60,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ETELI1235_4');
+        map.getPane('pane_ETELI1235_4').style.zIndex = 404;
+        map.getPane('pane_ETELI1235_4').style['mix-blend-mode'] = 'normal';
+        var layer_ETELI1235_4 = new L.geoJson(json_ETELI1235_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ETELI1235_4',
+            layerName: 'layer_ETELI1235_4',
+            pane: 'pane_ETELI1235_4',
+            onEachFeature: pop_ETELI1235_4,
+            style: style_ETELI1235_4_0,
+        });
+        bounds_group.addLayer(layer_ETELI1235_4);
+        map.addLayer(layer_ETELI1235_4);
+        function pop_ETELI1236_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COD'] !== null ? autolinker.link(feature.properties['COD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ETELI1236_5_0() {
+            return {
+                pane: 'pane_ETELI1236_5',
+                opacity: 1,
+                color: 'rgba(190,207,80,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ETELI1236_5');
+        map.getPane('pane_ETELI1236_5').style.zIndex = 405;
+        map.getPane('pane_ETELI1236_5').style['mix-blend-mode'] = 'normal';
+        var layer_ETELI1236_5 = new L.geoJson(json_ETELI1236_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ETELI1236_5',
+            layerName: 'layer_ETELI1236_5',
+            pane: 'pane_ETELI1236_5',
+            onEachFeature: pop_ETELI1236_5,
+            style: style_ETELI1236_5_0,
+        });
+        bounds_group.addLayer(layer_ETELI1236_5);
+        map.addLayer(layer_ETELI1236_5);
+        function pop_ETELI1237_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COD'] !== null ? autolinker.link(feature.properties['COD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ETELI1237_6_0() {
+            return {
+                pane: 'pane_ETELI1237_6',
+                opacity: 1,
+                color: 'rgba(213,180,60,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ETELI1237_6');
+        map.getPane('pane_ETELI1237_6').style.zIndex = 406;
+        map.getPane('pane_ETELI1237_6').style['mix-blend-mode'] = 'normal';
+        var layer_ETELI1237_6 = new L.geoJson(json_ETELI1237_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ETELI1237_6',
+            layerName: 'layer_ETELI1237_6',
+            pane: 'pane_ETELI1237_6',
+            onEachFeature: pop_ETELI1237_6,
+            style: style_ETELI1237_6_0,
+        });
+        bounds_group.addLayer(layer_ETELI1237_6);
+        map.addLayer(layer_ETELI1237_6);
+        function pop_ETELI1240_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COD'] !== null ? autolinker.link(feature.properties['COD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ETELI1240_7_0() {
+            return {
+                pane: 'pane_ETELI1240_7',
+                opacity: 1,
+                color: 'rgba(213,180,60,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ETELI1240_7');
+        map.getPane('pane_ETELI1240_7').style.zIndex = 407;
+        map.getPane('pane_ETELI1240_7').style['mix-blend-mode'] = 'normal';
+        var layer_ETELI1240_7 = new L.geoJson(json_ETELI1240_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ETELI1240_7',
+            layerName: 'layer_ETELI1240_7',
+            pane: 'pane_ETELI1240_7',
+            onEachFeature: pop_ETELI1240_7,
+            style: style_ETELI1240_7_0,
+        });
+        bounds_group.addLayer(layer_ETELI1240_7);
+        map.addLayer(layer_ETELI1240_7);
+        function pop_ETELI1241_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Layer'] !== null ? autolinker.link(feature.properties['Layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Color'] !== null ? autolinker.link(feature.properties['Color'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ETELI1241_8_0() {
+            return {
+                pane: 'pane_ETELI1241_8',
+                opacity: 1,
+                color: 'rgba(141,90,153,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ETELI1241_8');
+        map.getPane('pane_ETELI1241_8').style.zIndex = 408;
+        map.getPane('pane_ETELI1241_8').style['mix-blend-mode'] = 'normal';
+        var layer_ETELI1241_8 = new L.geoJson(json_ETELI1241_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ETELI1241_8',
+            layerName: 'layer_ETELI1241_8',
+            pane: 'pane_ETELI1241_8',
+            onEachFeature: pop_ETELI1241_8,
+            style: style_ETELI1241_8_0,
+        });
+        bounds_group.addLayer(layer_ETELI1241_8);
+        map.addLayer(layer_ETELI1241_8);
+        function pop_ETELI1244_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COD'] !== null ? autolinker.link(feature.properties['COD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ETELI1244_9_0() {
+            return {
+                pane: 'pane_ETELI1244_9',
+                opacity: 1,
+                color: 'rgba(196,60,57,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ETELI1244_9');
+        map.getPane('pane_ETELI1244_9').style.zIndex = 409;
+        map.getPane('pane_ETELI1244_9').style['mix-blend-mode'] = 'normal';
+        var layer_ETELI1244_9 = new L.geoJson(json_ETELI1244_9, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ETELI1244_9',
+            layerName: 'layer_ETELI1244_9',
+            pane: 'pane_ETELI1244_9',
+            onEachFeature: pop_ETELI1244_9,
+            style: style_ETELI1244_9_0,
+        });
+        bounds_group.addLayer(layer_ETELI1244_9);
+        map.addLayer(layer_ETELI1244_9);
+        function pop_ETELI1245_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COD'] !== null ? autolinker.link(feature.properties['COD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ETELI1245_10_0() {
+            return {
+                pane: 'pane_ETELI1245_10',
+                opacity: 1,
+                color: 'rgba(213,180,60,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ETELI1245_10');
+        map.getPane('pane_ETELI1245_10').style.zIndex = 410;
+        map.getPane('pane_ETELI1245_10').style['mix-blend-mode'] = 'normal';
+        var layer_ETELI1245_10 = new L.geoJson(json_ETELI1245_10, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ETELI1245_10',
+            layerName: 'layer_ETELI1245_10',
+            pane: 'pane_ETELI1245_10',
+            onEachFeature: pop_ETELI1245_10,
+            style: style_ETELI1245_10_0,
+        });
+        bounds_group.addLayer(layer_ETELI1245_10);
+        map.addLayer(layer_ETELI1245_10);
+        function pop_ETELI1249_11(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COD'] !== null ? autolinker.link(feature.properties['COD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ETELI1249_11_0() {
+            return {
+                pane: 'pane_ETELI1249_11',
+                opacity: 1,
+                color: 'rgba(190,207,80,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ETELI1249_11');
+        map.getPane('pane_ETELI1249_11').style.zIndex = 411;
+        map.getPane('pane_ETELI1249_11').style['mix-blend-mode'] = 'normal';
+        var layer_ETELI1249_11 = new L.geoJson(json_ETELI1249_11, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ETELI1249_11',
+            layerName: 'layer_ETELI1249_11',
+            pane: 'pane_ETELI1249_11',
+            onEachFeature: pop_ETELI1249_11,
+            style: style_ETELI1249_11_0,
+        });
+        bounds_group.addLayer(layer_ETELI1249_11);
+        map.addLayer(layer_ETELI1249_11);
+        function pop_ETELI1250_12(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COD'] !== null ? autolinker.link(feature.properties['COD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ETELI1250_12_0() {
+            return {
+                pane: 'pane_ETELI1250_12',
+                opacity: 1,
+                color: 'rgba(141,90,153,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ETELI1250_12');
+        map.getPane('pane_ETELI1250_12').style.zIndex = 412;
+        map.getPane('pane_ETELI1250_12').style['mix-blend-mode'] = 'normal';
+        var layer_ETELI1250_12 = new L.geoJson(json_ETELI1250_12, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ETELI1250_12',
+            layerName: 'layer_ETELI1250_12',
+            pane: 'pane_ETELI1250_12',
+            onEachFeature: pop_ETELI1250_12,
+            style: style_ETELI1250_12_0,
+        });
+        bounds_group.addLayer(layer_ETELI1250_12);
+        map.addLayer(layer_ETELI1250_12);
+        function pop_ETELI1256_13(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COD'] !== null ? autolinker.link(feature.properties['COD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ETELI1256_13_0() {
+            return {
+                pane: 'pane_ETELI1256_13',
+                opacity: 1,
+                color: 'rgba(196,60,57,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ETELI1256_13');
+        map.getPane('pane_ETELI1256_13').style.zIndex = 413;
+        map.getPane('pane_ETELI1256_13').style['mix-blend-mode'] = 'normal';
+        var layer_ETELI1256_13 = new L.geoJson(json_ETELI1256_13, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ETELI1256_13',
+            layerName: 'layer_ETELI1256_13',
+            pane: 'pane_ETELI1256_13',
+            onEachFeature: pop_ETELI1256_13,
+            style: style_ETELI1256_13_0,
+        });
+        bounds_group.addLayer(layer_ETELI1256_13);
+        map.addLayer(layer_ETELI1256_13);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/ETELI1256_13.png" /> ETELI-1256': layer_ETELI1256_13,'<img src="legend/ETELI1250_12.png" /> ETELI-1250': layer_ETELI1250_12,'<img src="legend/ETELI1249_11.png" /> ETELI-1249': layer_ETELI1249_11,'<img src="legend/ETELI1245_10.png" /> ETELI-1245': layer_ETELI1245_10,'<img src="legend/ETELI1244_9.png" /> ETELI-1244': layer_ETELI1244_9,'<img src="legend/ETELI1241_8.png" /> ETELI-1241': layer_ETELI1241_8,'<img src="legend/ETELI1240_7.png" /> ETELI-1240': layer_ETELI1240_7,'<img src="legend/ETELI1237_6.png" /> ETELI-1237': layer_ETELI1237_6,'<img src="legend/ETELI1236_5.png" /> ETELI-1236': layer_ETELI1236_5,'<img src="legend/ETELI1235_4.png" /> ETELI-1235': layer_ETELI1235_4,'<img src="legend/ETELI1234_3.png" /> ETELI-1234': layer_ETELI1234_3,'<img src="legend/ETELI1232_2.png" /> ETELI-1232': layer_ETELI1232_2,'<img src="legend/RV4_1.png" /> RV4': layer_RV4_1,"Google Satellite": layer_GoogleSatellite_0,}).addTo(map);
+        setBounds();
+        var mapDiv = document.getElementById('map');
+        var row = document.createElement('div');
+        row.className="row";
+        row.id="all";
+        row.style.height = "100%";
+        var col1 = document.createElement('div');
+        col1.className="col9";
+        col1.id = "mapWindow";
+        col1.style.height = "99%";
+        col1.style.width = "80%";
+        col1.style.display = "inline-block";
+        var col2 = document.createElement('div');
+        col2.className="col3";
+        col2.id = "menu";
+        col2.style.display = "inline-block";
+        mapDiv.parentNode.insertBefore(row, mapDiv);
+        document.getElementById("all").appendChild(col1);
+        document.getElementById("all").appendChild(col2);
+        col1.appendChild(mapDiv)
+        var Filters = {"COD": "str"};
+        function filterFunc() {
+          map.eachLayer(function(lyr){
+          if ("options" in lyr && "dataVar" in lyr["options"]){
+            features = this[lyr["options"]["dataVar"]].features.slice(0);
+            try{
+              for (key in Filters){
+                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
+                if (Filters[key] == "str" || Filters[key] == "bool"){
+                  var selection = [];
+                  var options = document.getElementById("sel_" + keyS).options
+                  for (var i=0; i < options.length; i++) {
+                    if (options[i].selected) selection.push(options[i].value);
+                  }
+                    try{
+                      if (key in features[0].properties){
+                        for (i = features.length - 1;
+                          i >= 0; --i){
+                          if (selection.indexOf(
+                          features[i].properties[key])<0
+                          && selection.length>0) {
+                          features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                  }
+                }
+                if (Filters[key] == "int"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (parseInt(features[i].properties[key])
+                          < sliderVals[0]
+                          || parseInt(features[i].properties[key])
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "real"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (features[i].properties[key]
+                          < sliderVals[0]
+                          || features[i].properties[key]
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "date"
+                  || Filters[key] == "datetime"
+                  || Filters[key] == "time"){
+                  try{
+                    if (key in features[0].properties){
+                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
+                      startdate = document.getElementById("dat_" +
+                        HTMLkey + "_date1").value.replace(" ", "T");
+                      enddate = document.getElementById("dat_" +
+                        HTMLkey + "_date2").value.replace(" ", "T");
+                      for (i = features.length - 1; i >= 0; --i){
+                        if (features[i].properties[key] < startdate
+                          || features[i].properties[key] > enddate){
+                          features.splice(i,1);
+                        }
+                      }
+                    }
+                  } catch(err){
+                  }
+                }
+              }
+            } catch(err){
+            }
+          this[lyr["options"]["layerName"]].clearLayers();
+          this[lyr["options"]["layerName"]].addData(features);
+          }
+          })
+        }
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_COD = document.createElement('div');
+            div_COD.id = "div_COD";
+            div_COD.className= "filterselect";
+            document.getElementById("menu").appendChild(div_COD);
+            sel_COD = document.createElement('select');
+            sel_COD.multiple = true;
+            sel_COD.size = 10;
+            sel_COD.id = "sel_COD";
+            var COD_options_str = "<option value='' unselected></option>";
+            sel_COD.onchange = function(){filterFunc()};
+            COD_options_str  += '<option value="ETELI-1232001">ETELI-1232001</option>';
+            COD_options_str  += '<option value="ETELI-1232001R">ETELI-1232001R</option>';
+            COD_options_str  += '<option value="ETELI-1232002">ETELI-1232002</option>';
+            COD_options_str  += '<option value="ETELI-1232003">ETELI-1232003</option>';
+            COD_options_str  += '<option value="ETELI-1232003R">ETELI-1232003R</option>';
+            COD_options_str  += '<option value="ETELI-1232004">ETELI-1232004</option>';
+            COD_options_str  += '<option value="ETELI-1232005">ETELI-1232005</option>';
+            COD_options_str  += '<option value="ETELI-1232006">ETELI-1232006</option>';
+            COD_options_str  += '<option value="ETELI-1232007">ETELI-1232007</option>';
+            COD_options_str  += '<option value="ETELI-1232008">ETELI-1232008</option>';
+            COD_options_str  += '<option value="ETELI-1232009">ETELI-1232009</option>';
+            COD_options_str  += '<option value="ETELI-1232010">ETELI-1232010</option>';
+            COD_options_str  += '<option value="ETELI-1232011">ETELI-1232011</option>';
+            COD_options_str  += '<option value="ETELI-1232012">ETELI-1232012</option>';
+            COD_options_str  += '<option value="ETELI-1232012R">ETELI-1232012R</option>';
+            COD_options_str  += '<option value="ETELI-1232013">ETELI-1232013</option>';
+            COD_options_str  += '<option value="ETELI-1232014">ETELI-1232014</option>';
+            COD_options_str  += '<option value="ETELI-1232015">ETELI-1232015</option>';
+            COD_options_str  += '<option value="ETELI-1232015R">ETELI-1232015R</option>';
+            COD_options_str  += '<option value="ETELI-1232016">ETELI-1232016</option>';
+            COD_options_str  += '<option value="ETELI-1232017">ETELI-1232017</option>';
+            COD_options_str  += '<option value="ETELI-1232018">ETELI-1232018</option>';
+            COD_options_str  += '<option value="ETELI-1232019">ETELI-1232019</option>';
+            COD_options_str  += '<option value="ETELI-1232020">ETELI-1232020</option>';
+            COD_options_str  += '<option value="ETELI-1232021">ETELI-1232021</option>';
+            COD_options_str  += '<option value="ETELI-1232022">ETELI-1232022</option>';
+            COD_options_str  += '<option value="ETELI-1232023">ETELI-1232023</option>';
+            COD_options_str  += '<option value="ETELI-1232024">ETELI-1232024</option>';
+            COD_options_str  += '<option value="ETELI-1232025">ETELI-1232025</option>';
+            COD_options_str  += '<option value="ETELI-1232026">ETELI-1232026</option>';
+            COD_options_str  += '<option value="ETELI-1232027">ETELI-1232027</option>';
+            COD_options_str  += '<option value="ETELI-1232028">ETELI-1232028</option>';
+            COD_options_str  += '<option value="ETELI-1232029">ETELI-1232029</option>';
+            COD_options_str  += '<option value="ETELI-1232030">ETELI-1232030</option>';
+            COD_options_str  += '<option value="ETELI-1232031">ETELI-1232031</option>';
+            COD_options_str  += '<option value="ETELI-1232031R">ETELI-1232031R</option>';
+            COD_options_str  += '<option value="ETELI-1232032">ETELI-1232032</option>';
+            COD_options_str  += '<option value="ETELI-1232033">ETELI-1232033</option>';
+            COD_options_str  += '<option value="ETELI-1232034">ETELI-1232034</option>';
+            COD_options_str  += '<option value="ETELI-1232035">ETELI-1232035</option>';
+            COD_options_str  += '<option value="ETELI-1232036">ETELI-1232036</option>';
+            COD_options_str  += '<option value="ETELI-1232037">ETELI-1232037</option>';
+            COD_options_str  += '<option value="ETELI-1232037R">ETELI-1232037R</option>';
+            COD_options_str  += '<option value="ETELI-1232038">ETELI-1232038</option>';
+            COD_options_str  += '<option value="ETELI-1232039">ETELI-1232039</option>';
+            COD_options_str  += '<option value="ETELI-1232040">ETELI-1232040</option>';
+            COD_options_str  += '<option value="ETELI-1232041">ETELI-1232041</option>';
+            COD_options_str  += '<option value="ETELI-1232042">ETELI-1232042</option>';
+            COD_options_str  += '<option value="ETELI-1232043">ETELI-1232043</option>';
+            COD_options_str  += '<option value="ETELI-1232044">ETELI-1232044</option>';
+            COD_options_str  += '<option value="ETELI-1232045">ETELI-1232045</option>';
+            COD_options_str  += '<option value="ETELI-1232045R">ETELI-1232045R</option>';
+            COD_options_str  += '<option value="ETELI-1232046">ETELI-1232046</option>';
+            COD_options_str  += '<option value="ETELI-1232047">ETELI-1232047</option>';
+            COD_options_str  += '<option value="ETELI-1232048">ETELI-1232048</option>';
+            COD_options_str  += '<option value="ETELI-1232049">ETELI-1232049</option>';
+            COD_options_str  += '<option value="ETELI-1232050">ETELI-1232050</option>';
+            COD_options_str  += '<option value="ETELI-1232051">ETELI-1232051</option>';
+            COD_options_str  += '<option value="ETELI-1232052">ETELI-1232052</option>';
+            COD_options_str  += '<option value="ETELI-1232053">ETELI-1232053</option>';
+            COD_options_str  += '<option value="ETELI-1232054">ETELI-1232054</option>';
+            COD_options_str  += '<option value="ETELI-1232055">ETELI-1232055</option>';
+            COD_options_str  += '<option value="ETELI-1232056">ETELI-1232056</option>';
+            COD_options_str  += '<option value="ETELI-1232057">ETELI-1232057</option>';
+            COD_options_str  += '<option value="ETELI-1232058">ETELI-1232058</option>';
+            COD_options_str  += '<option value="ETELI-1232059">ETELI-1232059</option>';
+            COD_options_str  += '<option value="ETELI-1232060">ETELI-1232060</option>';
+            COD_options_str  += '<option value="ETELI-1232061">ETELI-1232061</option>';
+            COD_options_str  += '<option value="ETELI-1232061R">ETELI-1232061R</option>';
+            COD_options_str  += '<option value="ETELI-1232062">ETELI-1232062</option>';
+            COD_options_str  += '<option value="ETELI-1232063">ETELI-1232063</option>';
+            COD_options_str  += '<option value="ETELI-1232064">ETELI-1232064</option>';
+            COD_options_str  += '<option value="ETELI-1232065">ETELI-1232065</option>';
+            COD_options_str  += '<option value="ETELI-1232066">ETELI-1232066</option>';
+            COD_options_str  += '<option value="ETELI-1234001">ETELI-1234001</option>';
+            COD_options_str  += '<option value="ETELI-1235001">ETELI-1235001</option>';
+            COD_options_str  += '<option value="ETELI-1235001R">ETELI-1235001R</option>';
+            COD_options_str  += '<option value="ETELI-1235002">ETELI-1235002</option>';
+            COD_options_str  += '<option value="ETELI-1235002R">ETELI-1235002R</option>';
+            COD_options_str  += '<option value="ETELI-1235003">ETELI-1235003</option>';
+            COD_options_str  += '<option value="ETELI-1235003R">ETELI-1235003R</option>';
+            COD_options_str  += '<option value="ETELI-1235004">ETELI-1235004</option>';
+            COD_options_str  += '<option value="ETELI-1235004R">ETELI-1235004R</option>';
+            COD_options_str  += '<option value="ETELI-1235005">ETELI-1235005</option>';
+            COD_options_str  += '<option value="ETELI-1235005R">ETELI-1235005R</option>';
+            COD_options_str  += '<option value="ETELI-1235006">ETELI-1235006</option>';
+            COD_options_str  += '<option value="ETELI-1235006R">ETELI-1235006R</option>';
+            COD_options_str  += '<option value="ETELI-1235007">ETELI-1235007</option>';
+            COD_options_str  += '<option value="ETELI-1235007R">ETELI-1235007R</option>';
+            COD_options_str  += '<option value="ETELI-1235008">ETELI-1235008</option>';
+            COD_options_str  += '<option value="ETELI-1235008R">ETELI-1235008R</option>';
+            COD_options_str  += '<option value="ETELI-1235009">ETELI-1235009</option>';
+            COD_options_str  += '<option value="ETELI-1235009R">ETELI-1235009R</option>';
+            COD_options_str  += '<option value="ETELI-1235010">ETELI-1235010</option>';
+            COD_options_str  += '<option value="ETELI-1235010R">ETELI-1235010R</option>';
+            COD_options_str  += '<option value="ETELI-1235011">ETELI-1235011</option>';
+            COD_options_str  += '<option value="ETELI-1235011R">ETELI-1235011R</option>';
+            COD_options_str  += '<option value="ETELI-1235012">ETELI-1235012</option>';
+            COD_options_str  += '<option value="ETELI-1235012R">ETELI-1235012R</option>';
+            COD_options_str  += '<option value="ETELI-1235013">ETELI-1235013</option>';
+            COD_options_str  += '<option value="ETELI-1235013R">ETELI-1235013R</option>';
+            COD_options_str  += '<option value="ETELI-1235014">ETELI-1235014</option>';
+            COD_options_str  += '<option value="ETELI-1235014R">ETELI-1235014R</option>';
+            COD_options_str  += '<option value="ETELI-1235015">ETELI-1235015</option>';
+            COD_options_str  += '<option value="ETELI-1235015R">ETELI-1235015R</option>';
+            COD_options_str  += '<option value="ETELI-1235016">ETELI-1235016</option>';
+            COD_options_str  += '<option value="ETELI-1235016R">ETELI-1235016R</option>';
+            COD_options_str  += '<option value="ETELI-1236001">ETELI-1236001</option>';
+            COD_options_str  += '<option value="ETELI-1236001R">ETELI-1236001R</option>';
+            COD_options_str  += '<option value="ETELI-1237001">ETELI-1237001</option>';
+            COD_options_str  += '<option value="ETELI-1237001R">ETELI-1237001R</option>';
+            COD_options_str  += '<option value="ETELI-1237002">ETELI-1237002</option>';
+            COD_options_str  += '<option value="ETELI-1237002R">ETELI-1237002R</option>';
+            COD_options_str  += '<option value="ETELI-1240001">ETELI-1240001</option>';
+            COD_options_str  += '<option value="ETELI-1240002">ETELI-1240002</option>';
+            COD_options_str  += '<option value="ETELI-1240003">ETELI-1240003</option>';
+            COD_options_str  += '<option value="ETELI-1240004">ETELI-1240004</option>';
+            COD_options_str  += '<option value="ETELI-1240005">ETELI-1240005</option>';
+            COD_options_str  += '<option value="ETELI-1240006">ETELI-1240006</option>';
+            COD_options_str  += '<option value="ETELI-1240007">ETELI-1240007</option>';
+            COD_options_str  += '<option value="ETELI-1240008">ETELI-1240008</option>';
+            COD_options_str  += '<option value="ETELI-1240009">ETELI-1240009</option>';
+            COD_options_str  += '<option value="ETELI-1240010">ETELI-1240010</option>';
+            COD_options_str  += '<option value="ETELI-1240011">ETELI-1240011</option>';
+            COD_options_str  += '<option value="ETELI-1240012">ETELI-1240012</option>';
+            COD_options_str  += '<option value="ETELI-1240013">ETELI-1240013</option>';
+            COD_options_str  += '<option value="ETELI-1240014">ETELI-1240014</option>';
+            COD_options_str  += '<option value="ETELI-1240015">ETELI-1240015</option>';
+            COD_options_str  += '<option value="ETELI-1240016">ETELI-1240016</option>';
+            COD_options_str  += '<option value="ETELI-1240017">ETELI-1240017</option>';
+            COD_options_str  += '<option value="ETELI-1240018">ETELI-1240018</option>';
+            COD_options_str  += '<option value="ETELI-1240019">ETELI-1240019</option>';
+            COD_options_str  += '<option value="ETELI-1240020">ETELI-1240020</option>';
+            COD_options_str  += '<option value="ETELI-1240021">ETELI-1240021</option>';
+            COD_options_str  += '<option value="ETELI-1240022">ETELI-1240022</option>';
+            COD_options_str  += '<option value="ETELI-1240023">ETELI-1240023</option>';
+            COD_options_str  += '<option value="ETELI-1240024">ETELI-1240024</option>';
+            COD_options_str  += '<option value="ETELI-1240025">ETELI-1240025</option>';
+            COD_options_str  += '<option value="ETELI-1240026">ETELI-1240026</option>';
+            COD_options_str  += '<option value="ETELI-1240027">ETELI-1240027</option>';
+            COD_options_str  += '<option value="ETELI-1240028">ETELI-1240028</option>';
+            COD_options_str  += '<option value="ETELI-1240029">ETELI-1240029</option>';
+            COD_options_str  += '<option value="ETELI-1240030">ETELI-1240030</option>';
+            COD_options_str  += '<option value="ETELI-1240031">ETELI-1240031</option>';
+            COD_options_str  += '<option value="ETELI-1240032">ETELI-1240032</option>';
+            COD_options_str  += '<option value="ETELI-1240033">ETELI-1240033</option>';
+            COD_options_str  += '<option value="ETELI-1240034">ETELI-1240034</option>';
+            COD_options_str  += '<option value="ETELI-1240035">ETELI-1240035</option>';
+            COD_options_str  += '<option value="ETELI-1240036">ETELI-1240036</option>';
+            COD_options_str  += '<option value="ETELI-1240037">ETELI-1240037</option>';
+            COD_options_str  += '<option value="ETELI-1240038">ETELI-1240038</option>';
+            COD_options_str  += '<option value="ETELI-1240039">ETELI-1240039</option>';
+            COD_options_str  += '<option value="ETELI-1240040">ETELI-1240040</option>';
+            COD_options_str  += '<option value="ETELI-1240041">ETELI-1240041</option>';
+            COD_options_str  += '<option value="ETELI-1240042">ETELI-1240042</option>';
+            COD_options_str  += '<option value="ETELI-1240043">ETELI-1240043</option>';
+            COD_options_str  += '<option value="ETELI-1240044">ETELI-1240044</option>';
+            COD_options_str  += '<option value="ETELI-1240045">ETELI-1240045</option>';
+            COD_options_str  += '<option value="ETELI-1240046">ETELI-1240046</option>';
+            COD_options_str  += '<option value="ETELI-1240047">ETELI-1240047</option>';
+            COD_options_str  += '<option value="ETELI-1240048">ETELI-1240048</option>';
+            COD_options_str  += '<option value="ETELI-1240049">ETELI-1240049</option>';
+            COD_options_str  += '<option value="ETELI-1240050">ETELI-1240050</option>';
+            COD_options_str  += '<option value="ETELI-1240051">ETELI-1240051</option>';
+            COD_options_str  += '<option value="ETELI-1240052">ETELI-1240052</option>';
+            COD_options_str  += '<option value="ETELI-1240053">ETELI-1240053</option>';
+            COD_options_str  += '<option value="ETELI-1240054">ETELI-1240054</option>';
+            COD_options_str  += '<option value="ETELI-1240055">ETELI-1240055</option>';
+            COD_options_str  += '<option value="ETELI-1240056">ETELI-1240056</option>';
+            COD_options_str  += '<option value="ETELI-1240057">ETELI-1240057</option>';
+            COD_options_str  += '<option value="ETELI-1240058">ETELI-1240058</option>';
+            COD_options_str  += '<option value="ETELI-1240059">ETELI-1240059</option>';
+            COD_options_str  += '<option value="ETELI-1240060">ETELI-1240060</option>';
+            COD_options_str  += '<option value="ETELI-1240061">ETELI-1240061</option>';
+            COD_options_str  += '<option value="ETELI-1240062">ETELI-1240062</option>';
+            COD_options_str  += '<option value="ETELI-1240063">ETELI-1240063</option>';
+            COD_options_str  += '<option value="ETELI-1240064">ETELI-1240064</option>';
+            COD_options_str  += '<option value="ETELI-1240065">ETELI-1240065</option>';
+            COD_options_str  += '<option value="ETELI-1240066">ETELI-1240066</option>';
+            COD_options_str  += '<option value="ETELI-1240067">ETELI-1240067</option>';
+            COD_options_str  += '<option value="ETELI-1240068">ETELI-1240068</option>';
+            COD_options_str  += '<option value="ETELI-1240069">ETELI-1240069</option>';
+            COD_options_str  += '<option value="ETELI-1240070">ETELI-1240070</option>';
+            COD_options_str  += '<option value="ETELI-1240071">ETELI-1240071</option>';
+            COD_options_str  += '<option value="ETELI-1240072">ETELI-1240072</option>';
+            COD_options_str  += '<option value="ETELI-1240073">ETELI-1240073</option>';
+            COD_options_str  += '<option value="ETELI-1240074">ETELI-1240074</option>';
+            COD_options_str  += '<option value="ETELI-1240075">ETELI-1240075</option>';
+            COD_options_str  += '<option value="ETELI-1240076">ETELI-1240076</option>';
+            COD_options_str  += '<option value="ETELI-1240077">ETELI-1240077</option>';
+            COD_options_str  += '<option value="ETELI-1240078">ETELI-1240078</option>';
+            COD_options_str  += '<option value="ETELI-1240079">ETELI-1240079</option>';
+            COD_options_str  += '<option value="ETELI-1240080">ETELI-1240080</option>';
+            COD_options_str  += '<option value="ETELI-1240081">ETELI-1240081</option>';
+            COD_options_str  += '<option value="ETELI-1240082">ETELI-1240082</option>';
+            COD_options_str  += '<option value="ETELI-1240083">ETELI-1240083</option>';
+            COD_options_str  += '<option value="ETELI-1240084">ETELI-1240084</option>';
+            COD_options_str  += '<option value="ETELI-1240085">ETELI-1240085</option>';
+            COD_options_str  += '<option value="ETELI-1240086">ETELI-1240086</option>';
+            COD_options_str  += '<option value="ETELI-1240087">ETELI-1240087</option>';
+            COD_options_str  += '<option value="ETELI-1240088">ETELI-1240088</option>';
+            COD_options_str  += '<option value="ETELI-1240089">ETELI-1240089</option>';
+            COD_options_str  += '<option value="ETELI-1240090">ETELI-1240090</option>';
+            COD_options_str  += '<option value="ETELI-1240091">ETELI-1240091</option>';
+            COD_options_str  += '<option value="ETELI-1240092">ETELI-1240092</option>';
+            COD_options_str  += '<option value="ETELI-1240093">ETELI-1240093</option>';
+            COD_options_str  += '<option value="ETELI-1240094">ETELI-1240094</option>';
+            COD_options_str  += '<option value="ETELI-1240095">ETELI-1240095</option>';
+            COD_options_str  += '<option value="ETELI-1240096">ETELI-1240096</option>';
+            COD_options_str  += '<option value="ETELI-1240097">ETELI-1240097</option>';
+            COD_options_str  += '<option value="ETELI-1240098">ETELI-1240098</option>';
+            COD_options_str  += '<option value="ETELI-1240099">ETELI-1240099</option>';
+            COD_options_str  += '<option value="ETELI-1240100">ETELI-1240100</option>';
+            COD_options_str  += '<option value="ETELI-1240101">ETELI-1240101</option>';
+            COD_options_str  += '<option value="ETELI-1240102">ETELI-1240102</option>';
+            COD_options_str  += '<option value="ETELI-1240103">ETELI-1240103</option>';
+            COD_options_str  += '<option value="ETELI-1240104">ETELI-1240104</option>';
+            COD_options_str  += '<option value="ETELI-1240105">ETELI-1240105</option>';
+            COD_options_str  += '<option value="ETELI-1240106">ETELI-1240106</option>';
+            COD_options_str  += '<option value="ETELI-1240107">ETELI-1240107</option>';
+            COD_options_str  += '<option value="ETELI-1240108">ETELI-1240108</option>';
+            COD_options_str  += '<option value="ETELI-1240109">ETELI-1240109</option>';
+            COD_options_str  += '<option value="ETELI-1240110">ETELI-1240110</option>';
+            COD_options_str  += '<option value="ETELI-1240111">ETELI-1240111</option>';
+            COD_options_str  += '<option value="ETELI-1240112">ETELI-1240112</option>';
+            COD_options_str  += '<option value="ETELI-1240113">ETELI-1240113</option>';
+            COD_options_str  += '<option value="ETELI-1240114">ETELI-1240114</option>';
+            COD_options_str  += '<option value="ETELI-1240115">ETELI-1240115</option>';
+            COD_options_str  += '<option value="ETELI-1240116">ETELI-1240116</option>';
+            COD_options_str  += '<option value="ETELI-1240117">ETELI-1240117</option>';
+            COD_options_str  += '<option value="ETELI-1240118">ETELI-1240118</option>';
+            COD_options_str  += '<option value="ETELI-1240119">ETELI-1240119</option>';
+            COD_options_str  += '<option value="ETELI-1244001">ETELI-1244001</option>';
+            COD_options_str  += '<option value="ETELI-1244001R">ETELI-1244001R</option>';
+            COD_options_str  += '<option value="ETELI-1245001">ETELI-1245001</option>';
+            COD_options_str  += '<option value="ETELI-1245001R">ETELI-1245001R</option>';
+            COD_options_str  += '<option value="ETELI-1245002">ETELI-1245002</option>';
+            COD_options_str  += '<option value="ETELI-1245002R">ETELI-1245002R</option>';
+            COD_options_str  += '<option value="ETELI-1249001">ETELI-1249001</option>';
+            COD_options_str  += '<option value="ETELI-1249001R">ETELI-1249001R</option>';
+            COD_options_str  += '<option value="ETELI-1250001">ETELI-1250001</option>';
+            COD_options_str  += '<option value="ETELI-1250002">ETELI-1250002</option>';
+            COD_options_str  += '<option value="ETELI-1250003">ETELI-1250003</option>';
+            COD_options_str  += '<option value="ETELI-1250004">ETELI-1250004</option>';
+            COD_options_str  += '<option value="ETELI-1250005">ETELI-1250005</option>';
+            COD_options_str  += '<option value="ETELI-1250006">ETELI-1250006</option>';
+            COD_options_str  += '<option value="ETELI-1250007">ETELI-1250007</option>';
+            COD_options_str  += '<option value="ETELI-1250008">ETELI-1250008</option>';
+            COD_options_str  += '<option value="ETELI-1250009">ETELI-1250009</option>';
+            COD_options_str  += '<option value="ETELI-1250010">ETELI-1250010</option>';
+            COD_options_str  += '<option value="ETELI-1250011">ETELI-1250011</option>';
+            COD_options_str  += '<option value="ETELI-1250012">ETELI-1250012</option>';
+            COD_options_str  += '<option value="ETELI-1250013">ETELI-1250013</option>';
+            COD_options_str  += '<option value="ETELI-1250014">ETELI-1250014</option>';
+            COD_options_str  += '<option value="ETELI-1250015">ETELI-1250015</option>';
+            COD_options_str  += '<option value="ETELI-1250016">ETELI-1250016</option>';
+            COD_options_str  += '<option value="ETELI-1250017">ETELI-1250017</option>';
+            COD_options_str  += '<option value="ETELI-1250018">ETELI-1250018</option>';
+            COD_options_str  += '<option value="ETELI-1250019">ETELI-1250019</option>';
+            COD_options_str  += '<option value="ETELI-1250020">ETELI-1250020</option>';
+            COD_options_str  += '<option value="ETELI-1250021">ETELI-1250021</option>';
+            COD_options_str  += '<option value="ETELI-1250022">ETELI-1250022</option>';
+            COD_options_str  += '<option value="ETELI-1250023">ETELI-1250023</option>';
+            COD_options_str  += '<option value="ETELI-1250024">ETELI-1250024</option>';
+            COD_options_str  += '<option value="ETELI-1250025">ETELI-1250025</option>';
+            COD_options_str  += '<option value="ETELI-1250026">ETELI-1250026</option>';
+            COD_options_str  += '<option value="ETELI-1250027">ETELI-1250027</option>';
+            COD_options_str  += '<option value="ETELI-1250028">ETELI-1250028</option>';
+            COD_options_str  += '<option value="ETELI-1250029">ETELI-1250029</option>';
+            COD_options_str  += '<option value="ETELI-1250030">ETELI-1250030</option>';
+            COD_options_str  += '<option value="ETELI-1250031">ETELI-1250031</option>';
+            COD_options_str  += '<option value="ETELI-1250032">ETELI-1250032</option>';
+            COD_options_str  += '<option value="ETELI-1250033">ETELI-1250033</option>';
+            COD_options_str  += '<option value="ETELI-1250034">ETELI-1250034</option>';
+            COD_options_str  += '<option value="ETELI-1250035">ETELI-1250035</option>';
+            COD_options_str  += '<option value="ETELI-1250036">ETELI-1250036</option>';
+            COD_options_str  += '<option value="ETELI-1250037">ETELI-1250037</option>';
+            COD_options_str  += '<option value="ETELI-1250038">ETELI-1250038</option>';
+            COD_options_str  += '<option value="ETELI-1250039">ETELI-1250039</option>';
+            COD_options_str  += '<option value="ETELI-1250040">ETELI-1250040</option>';
+            COD_options_str  += '<option value="ETELI-1256001">ETELI-1256001</option>';
+            COD_options_str  += '<option value="ETELI-1256001R">ETELI-1256001R</option>';
+            COD_options_str  += '<option value="ETELI-1256002">ETELI-1256002</option>';
+            COD_options_str  += '<option value="ETELI-1256002R">ETELI-1256002R</option>';
+            COD_options_str  += '<option value="ETELI-1256003">ETELI-1256003</option>';
+            COD_options_str  += '<option value="ETELI-1256003R">ETELI-1256003R</option>';
+            COD_options_str  += '<option value="ETELI-1256004">ETELI-1256004</option>';
+            COD_options_str  += '<option value="ETELI-1256005">ETELI-1256005</option>';
+            COD_options_str  += '<option value="ETELI-1256006">ETELI-1256006</option>';
+            sel_COD.innerHTML = COD_options_str;
+            div_COD.appendChild(sel_COD);
+            var lab_COD = document.createElement('div');
+            lab_COD.innerHTML = 'COD';
+            lab_COD.className = 'filterlabel';
+            div_COD.appendChild(lab_COD);
+            var reset_COD = document.createElement('div');
+            reset_COD.innerHTML = 'clear filter';
+            reset_COD.className = 'filterlabel';
+            reset_COD.onclick = function() {
+                var options = document.getElementById("sel_COD").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_COD.appendChild(reset_COD);
+        </script>
+    </body>
+</html>
