@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="css/nouislider.min.css">
         <style>
         #map {
-            width: 1609px;
+            width: 1409px;
             height: 866px;
         }
         </style>
@@ -48,8 +48,8 @@
         <script src="data/ETELI1256_13.js"></script>
         <script>
         var map = L.map('map', {
-            zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-9.463779660654813,-79.34743321233644],[-8.429143491858653,-77.42973901270483]]);
+            zoomControl:true, maxZoom:25, minZoom:1
+        }).fitBounds([[-9.297,-70.895],[-8.429143491858653,-77.42973901270483]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
